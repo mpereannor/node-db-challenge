@@ -23,8 +23,8 @@ routerResource.get('/', (req, res) => {
 routerResource.post('/', (req, res) => {
     const resourceData = req.body;
 
-    Projects.addResources()
-    .insert(resourceData)
+    Projects.addResources(resourceData)
+    //.insert(resourceData)
     .then(newResourceEntry => { 
         res.status(201).json(newResourceEntry);
     })

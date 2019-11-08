@@ -17,11 +17,11 @@ function addResources(resource){
    values
     ( "transport", "helps with logistics");
 */
-    db('resources')
+    return db('resources')
     .insert(resource)
-    // .then(ids => {
-    //     return findById(ids[0])
-   // })
+//     .then(ids => {
+//         return findById(ids[0])
+//    })
 }
 
 function getResources(){
@@ -53,6 +53,7 @@ function addTasks(){
    // })
 }
 
-function getTasks(){
+function getTasks(project_id){
     return db('tasks')
+    .where({project_id})
 }
