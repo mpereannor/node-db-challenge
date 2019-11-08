@@ -1,13 +1,13 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('tasks').del()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+      return knex('tasks').insert([
+        {id: 1, tasks_description: 'initiate immolation', notes: 'build rods', completed: 1, project_id: 1},
+        {id: 2, tasks_description: 'grant klignons amnesty',notes: 'build space cities',  completed: 1, project_id: 2},
+        {id: 3, tasks_description: 'deep space survey',notes: 'go to alpha centauri', completed: 1, project_id: 1}
       ]);
     });
 };
