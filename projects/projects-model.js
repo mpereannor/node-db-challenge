@@ -1,15 +1,4 @@
 
-
-// - [ ] Design the data model and use _knex migrations_
-//  to create the database and tables.
-// - [ ] Build an API with endpoints for:
-//   - [ ] adding resources.
-//   - [ ] retrieving a list of resources.
-//   - [ ] adding projects.
-//   - [ ] retrieving a list of projects.
-//   - [ ] adding tasks.
-//   - [ ] retrieving a list of tasks.
-
 const db = require('../data/db.config');
 
 module.exports = { 
@@ -21,7 +10,7 @@ module.exports = {
     getTasks
 };
 
-function addResources(){
+function addResources(resource){
     
 /* insert into resources
      (resource_name, resource_description)
@@ -29,7 +18,7 @@ function addResources(){
     ( "transport", "helps with logistics");
 */
     db('resources')
-    .insert(resourceData)
+    .insert(resource)
     // .then(ids => {
     //     return findById(ids[0])
    // })
