@@ -1,5 +1,5 @@
 const express = require('express');
-const Projects = require('./projects-model');
+const Helpers = require('./projects-model');
 
 const routerResource = express.Router();
 const routerProject = express.Router();
@@ -8,7 +8,7 @@ const routerTask = express.Router();
 //resource endpoints
 
 routerResource.get('/', (req, res) => { 
-    Projects.getResources()
+    Helpers.getResources()
     .then(resource => { 
         res.json(resource);
     })
@@ -23,7 +23,7 @@ routerResource.get('/', (req, res) => {
 routerResource.post('/', (req, res) => {
     const resourceData = req.body;
 
-    Projects.addResources(resourceData)
+    Helpers.addResources(resourceData)
     .then(newResourceEntry => { 
         res.status(201).json(newResourceEntry);
     })
@@ -36,21 +36,17 @@ routerResource.post('/', (req, res) => {
 //project endpoints
 
 routerProject.get('/', (req, res) => { 
-    Projects.getProjects()
-    .then(project => {
-
-      /*Your promise should resolve to an array of task/project objects. Map over the array and apply the ‘if completed === 0... false, etc etc’ logic on the completed property of each object 
-    */
-     projectR = project.map(com => {
-         com.complete === 0
-         ?
-         com.complete = false
-         :
-         com.complete = true
-     }) 
-        res.json(projectR);
-        // res.json(project);
-
+    Helpers.getProjects()
+    .then(projects => {
+        const projectPrettier = projects.map(project => {
+          if (project.completed === 1) {
+            return { ...project, completed: true };
+          } 
+          else {
+            return { ...project, completed: false };
+          }
+        });       
+        res.json(projectPrettier);
     })
     .catch(error => { 
         res.status(500).json(
@@ -63,7 +59,7 @@ routerProject.get('/', (req, res) => {
 routerProject.post('/', (req, res) => {
     const projectData = req.body;
   
-    Projects.addProjects(projectData)
+    Helpers.addProjects(projectData)
     .then(newProjectEntry => { 
         res.status(201).json(newProjectEntry);
     })
@@ -75,9 +71,17 @@ routerProject.post('/', (req, res) => {
 //tasks endpoints
 
 routerTask.get('/', (req, res) => { 
-    Projects.getTasks()
-    .then(task => { 
-        res.json(task);
+    Helpers.getTasks()
+    .then(tasks => { 
+        const taskPrettier = tasks.map(task => {
+            if (task.completionStatus) {
+              return { ...task, completionStatus: true };
+            } 
+            else {
+              return { ...task, completionStatus: false };
+            }
+          });       
+          res.json(taskPrettier);
     })
     .catch(error => { 
         res.status(500).json(
@@ -90,7 +94,7 @@ routerTask.get('/', (req, res) => {
 routerTask.post('/', (req, res) => {
     const taskData = req.body;
   
-    Projects.addTasks(taskData)
+    Helpers.addTasks(taskData)
     .then(newTaskEntry => { 
         res.status(201).json(newTaskEntry);
     })
@@ -103,5 +107,4 @@ module.exports = {
     routerResource, 
     routerProject,
     routerTask,
-
 };

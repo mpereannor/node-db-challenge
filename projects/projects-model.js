@@ -12,11 +12,6 @@ module.exports = {
 
 function addResources(resource){
     
-    /* insert into resources
-        (resource_name, resource_description)
-    values
-        ( "transport", "helps with logistics");
-    */
     return db('resources')
     .insert(resource)
 }
