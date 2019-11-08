@@ -12,16 +12,13 @@ module.exports = {
 
 function addResources(resource){
     
-/* insert into resources
-     (resource_name, resource_description)
-   values
-    ( "transport", "helps with logistics");
-*/
+    /* insert into resources
+        (resource_name, resource_description)
+    values
+        ( "transport", "helps with logistics");
+    */
     return db('resources')
     .insert(resource)
-//     .then(ids => {
-//         return findById(ids[0])
-//    })
 }
 
 function getResources(){
@@ -32,9 +29,9 @@ function getResources(){
 //     return db('resources')
 //     .where({id}).first()
 // }
-function addProjects(){
+function addProjects(project){
 
-    db('projects')
+    return db('projects')
     .insert(project)
     // .then(ids => {
     //     return findById(ids[0])
@@ -51,9 +48,34 @@ function addTasks(){
     // .then(ids => {
     //     return findById(ids[0])
    // })
+
+//    select t.tasks_description as tasksDescription,
+//        t.notes as tasksNotes,
+//        t.completed as completionStatus,
+//        p.project_name as projectName, 
+//        p.project_description as projectDescription
+// from 
+//     tasks as t
+// join 
+//     projects as p
+// on
+//     p.id = t.project_id
 }
 
-function getTasks(project_id){
-    return db('tasks')
-    .where({project_id})
+function getTasks(){
+    return db('tasks as t')
+    .join('projects as p', 'p.id', 't.project_id')
+    .select(
+        't.tasks_description as tasksDescription',
+        't.notes as tasksNotes',
+        't.completed as completionStatus',
+        'p.project_name as projectName',
+        'p.project_description as projectDescription'
+        )
 }
+
+
+// function getTasks(project_id){
+//     return db('tasks')
+//     .where({project_id})
+// }
