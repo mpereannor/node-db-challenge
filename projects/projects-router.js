@@ -48,6 +48,22 @@ routerProject.get('/', (req, res) => {
         )
     })
 })
+
+//tasks endpoints
+
+routerTask.get('/', (req, res) => { 
+    Projects.getTasks()
+    .then(task => { 
+        res.json(task);
+    })
+    .catch(error => { 
+        res.status(500).json(
+            'failed to get resoures ' + 
+            error.message
+        )
+    })
+})
+
 //module.exports = router;
 module.exports = { 
     routerResource, 
