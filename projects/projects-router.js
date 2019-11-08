@@ -6,7 +6,6 @@ const routerProject = express.Router();
 const routerTask = express.Router();
 
 //resource endpoints
-
 routerResource.get('/', (req, res) => { 
     Helpers.getResources()
     .then(resource => { 
@@ -15,6 +14,20 @@ routerResource.get('/', (req, res) => {
     .catch(error => { 
         res.status(500).json(
             'failed to get resoures ' + 
+            error.message
+        )
+    })
+})
+
+routerResource.get('/:id', (req, res) => {
+    const {id} = req.params;
+    Helpers.getProjectById(id) 
+    .then(resource => { 
+        res.json(resource)
+    })
+    .catch(error => {
+        res.status(500).json(
+            'failed to get resources ' + 
             error.message
         )
     })
@@ -56,6 +69,20 @@ routerProject.get('/', (req, res) => {
     })
 })
 
+routerProject.get('/:id', (req, res ) => {
+    const {id} = req.params;
+    Helpers.getProjectById(id)
+    .then(projects => { 
+        res.json(projects)
+    })
+    .catch(error => { 
+        res.status(500).json(
+            'failed to get project ' +
+            error.message
+        )
+    })
+})
+
 routerProject.post('/', (req, res) => {
     const projectData = req.body;
   
@@ -67,6 +94,7 @@ routerProject.post('/', (req, res) => {
         res.status(500).json('failed to add projects' + error.message)
     })
 })
+
 
 //tasks endpoints
 
