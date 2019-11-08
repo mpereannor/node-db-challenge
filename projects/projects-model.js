@@ -29,7 +29,7 @@ function addResources(){
     ( "transport", "helps with logistics");
 */
     db('resources')
-    .insert(resource)
+    .insert(resourceData)
     // .then(ids => {
     //     return findById(ids[0])
    // })
@@ -39,6 +39,10 @@ function getResources(){
     return db('resources')
 }
 
+// function getResourceById(id){ 
+//     return db('resources')
+//     .where({id}).first()
+// }
 function addProjects(){
 
     db('projects')

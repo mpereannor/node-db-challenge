@@ -8,7 +8,10 @@ const server = express();
 server.use(helmet());
 server.use(express.json());
 
-server.use('/api/resources', ProjectRouter)
+server.use('/api/resources', ProjectRouter.routerResource);
+server.use('/api/projects', ProjectRouter.routerProject);
+server.use('/api/tasks', ProjectRouter.routerTask);
+
 
 
 module.exports = server;
