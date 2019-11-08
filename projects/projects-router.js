@@ -87,7 +87,18 @@ routerTask.get('/', (req, res) => {
     })
 })
 
-//module.exports = router;
+routerTask.post('/', (req, res) => {
+    const taskData = req.body;
+  
+    Projects.addTasks(taskData)
+    .then(newTaskEntry => { 
+        res.status(201).json(newTaskEntry);
+    })
+    .catch( error => { 
+        res.status(500).json('failed to add projects' + error.message)
+    })
+})
+
 module.exports = { 
     routerResource, 
     routerProject,

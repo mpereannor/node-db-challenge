@@ -42,24 +42,12 @@ function getProjects(){
     return db('projects')
 }
 
-function addTasks(){
-    db('tasks')
+function addTasks(task){
+    return db('tasks')
     .insert(task)
     // .then(ids => {
     //     return findById(ids[0])
    // })
-
-//    select t.tasks_description as tasksDescription,
-//        t.notes as tasksNotes,
-//        t.completed as completionStatus,
-//        p.project_name as projectName, 
-//        p.project_description as projectDescription
-// from 
-//     tasks as t
-// join 
-//     projects as p
-// on
-//     p.id = t.project_id
 }
 
 function getTasks(){
