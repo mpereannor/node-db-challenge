@@ -20,17 +20,12 @@ function getResources(){
     return db('resources')
 }
 
-// function getResourceById(id){ 
-//     return db('resources')
-//     .where({id}).first()
-// }
+
 function addProjects(project){
 
     return db('projects')
     .insert(project)
-    // .then(ids => {
-    //     return findById(ids[0])
-   // })
+
 }
 
 function getProjects(){
@@ -40,9 +35,7 @@ function getProjects(){
 function addTasks(task){
     return db('tasks')
     .insert(task)
-    // .then(ids => {
-    //     return findById(ids[0])
-   // })
+  
 }
 
 function getTasks(){
@@ -57,8 +50,3 @@ function getTasks(){
         )
 }
 
-
-// function getTasks(project_id){
-//     return db('tasks')
-//     .where({project_id})
-// }
