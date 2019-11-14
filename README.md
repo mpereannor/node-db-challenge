@@ -40,11 +40,23 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] Explain the difference between `Relational Databases` and `SQL`.
 
+Relational Database is a software system that allows you to store and retrieve data in an efficient and organized manner.
+
+SQL is a formal language that allows you to communicate with database systems to insert, query, update, delete the content.
+
 - [ ] Why do tables need a `primary key`?
+
+Unique identification of rows 
 
 - [ ] What is the name given to a table column that references the primary key on another table.
 
+  foreign key
+
 - [ ] What do we need in order to have a _many to many_ relationship between two tables.
+
+this is done by using the query method `join`
+
+join tables are useful for modeling many to many relationships between two or more classes or subjects. They allow for an object to belong to more than one other object,by creating a central location for foreign keys, that correspond to each other. T
 
 ## Minimum Viable Product
 
